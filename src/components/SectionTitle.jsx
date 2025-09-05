@@ -1,15 +1,15 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-const SectionTitle = () => {
+const SectionTitle = ({ heading, title, isViewMore }) => {
   return (
     <>
       <div className="mb-16">
         <div className="flex items-center gap-4 text-lg font-medium mb-6">
           <div className="h-8 w-5 rounded-xs bg-Secondary"></div>
-          <h1 className="text-Secondary">Section Heading</h1>
+          <h1 className="text-Secondary">{heading}</h1>
         </div>
         <div className="flex items-center justify-between">
-          <h1 className="text-4xl font-bold">Explore Our Products</h1>
+          <h1 className="text-4xl font-bold">{title}</h1>
 
           {/* arrow icons */}
           {/* <div className="flex items-center gap-4">
@@ -22,9 +22,11 @@ const SectionTitle = () => {
           </div> */}
 
           {/* View all */}
-          <button className="px-10 bg-Secondary py-3 2xl:py-4 text-lg text-white cursor-pointer rounded-xs">
-            View All
-          </button>
+          {isViewMore && (
+            <button className="px-10 bg-Secondary py-3 2xl:py-4 text-lg text-white cursor-pointer rounded-xs">
+              View All
+            </button>
+          )}
         </div>
       </div>
     </>

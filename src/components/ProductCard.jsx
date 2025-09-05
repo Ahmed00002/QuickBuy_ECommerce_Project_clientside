@@ -3,7 +3,10 @@ import { FaRegEye } from "react-icons/fa6";
 import Rating from "react-rating";
 import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 
-const ProductCard = () => {
+const ProductCard = (product) => {
+  console.log(product.product);
+  const { isDiscount, name, price } = product?.product || {};
+
   return (
     <>
       <div className="group ">
@@ -16,7 +19,12 @@ const ProductCard = () => {
             }
             alt="Product Image"
           />
-          <span className="px-2 py-1 bg-Secondary text-white rounded-xs absolute left-3 top-3 text-md">
+          {/* discount percentage */}
+          <span
+            className={`px-2 py-1 bg-Secondary text-white rounded-xs absolute left-3 top-3 text-md ${
+              isDiscount ? "block" : "hidden"
+            }`}
+          >
             -40%
           </span>
 
@@ -38,16 +46,22 @@ const ProductCard = () => {
 
         {/* product details */}
         <div className="mt-6 space-y-1">
-          <h1 className="text-lg font-medium">Product title</h1>
+          <h1 className="text-lg font-medium">{name || "Hello"}</h1>
           <div className="flex gap-3 text-[16px] font-medium">
-            <p className=" text-Secondary">$ 256</p>
-            <p className="line-through opacity-50">$ 256</p>
+            <p className=" text-Secondary">$ {price}</p>
+            <p
+              className={`${
+                isDiscount ? " line-through opacity-50 block" : "hidden"
+              }`}
+            >
+              $ {price}
+            </p>
           </div>
           <div className="flex gap-2">
             <Rating
               readonly
               className="text-[#FFAD33] text-xl"
-              placeholderRating={4}
+              placeholderRating={2.5}
               fullSymbol={<IoMdStar />}
               emptySymbol={<IoMdStarOutline />}
               placeholderSymbol={<IoMdStar />}
